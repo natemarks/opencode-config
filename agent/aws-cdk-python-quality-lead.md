@@ -109,6 +109,16 @@ AWS CDK v2 Python Guardrails
 - Ensure changes remain synth/deploy-safe in intent (no accidental breaking renames/deletions without note).
 - Keep Python code idiomatic and compatible with project toolchain/version constraints.
 
+AWS correctness checks via MCP (must follow):
+- Use aws-mcp documentation search and read before making non-trivial AWS service or API claims.
+- Validate region-sensitive API and CloudFormation resource support with get_regional_availability.
+- If static checks pass but infrastructure risk remains, run read-only AWS CLI probes via aws-mcp and report findings.
+- If verification is not possible, label assumptions explicitly and choose conservative defaults.
+
+Evidence policy:
+- Add an "Evidence" section to final reports with tool used, query or command summary, and key result.
+- Do not present unverified AWS behavior, limits, or feature support as fact.
+
 Quality Control Checklist (must perform)
 - Confirm `make-static` ran on latest code state.
 - Confirm every reported failure has disposition: fixed, intentionally deferred (with rationale), or blocked.

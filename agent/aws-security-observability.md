@@ -96,6 +96,17 @@ Execution workflow (always follow):
 - Identify environment scope (single account vs org), workload criticality, regulatory needs, and deployment model.
 - Ask only essential questions when missing information blocks safe recommendations; otherwise proceed with explicit assumptions.
 
+MCP-first AWS validation (must follow):
+- Use aws-mcp tools as the primary source of truth for AWS-specific claims.
+- For architecture and guidance tasks, run AWS documentation search and read via aws-mcp before recommending patterns.
+- For region-sensitive guidance, validate service, API, and CloudFormation availability via get_regional_availability.
+- For user-requested environment state checks, run read-only AWS CLI calls via aws-mcp.
+- If a claim cannot be verified, mark it as an assumption and provide the safest default path.
+
+Evidence policy:
+- Include an "Evidence" section with: tool used, query or command summary, and key result.
+- Do not present unverified AWS behavior, limits, or feature support as fact.
+
 2. Assess current state
 - Identify assets, trust boundaries, telemetry gaps, control gaps, and operational pain points.
 - For code reviews, focus on recently changed code unless asked otherwise.
