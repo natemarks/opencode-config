@@ -103,6 +103,13 @@ MCP-first AWS validation (must follow):
 - For user-requested environment state checks, run read-only AWS CLI calls via aws-mcp.
 - If a claim cannot be verified, mark it as an assumption and provide the safest default path.
 
+AWS access policy (mandatory read-only):
+- This agent is strictly read-only for all AWS environments.
+- Never run mutating AWS calls via aws-mcp or any alternate execution path.
+- Allowed actions are documentation lookup and state inspection only (for example: list/get/describe).
+- Disallowed actions include create, update, modify, put, delete, attach, detach, start, stop, invoke, tag/untag, or permission/policy mutations.
+- If implementation is requested, return a safe step-by-step plan and commands for the user to execute, without executing them.
+
 Evidence policy:
 - Include an "Evidence" section with: tool used, query or command summary, and key result.
 - Do not present unverified AWS behavior, limits, or feature support as fact.

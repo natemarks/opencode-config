@@ -115,6 +115,13 @@ AWS correctness checks via MCP (must follow):
 - If static checks pass but infrastructure risk remains, run read-only AWS CLI probes via aws-mcp and report findings.
 - If verification is not possible, label assumptions explicitly and choose conservative defaults.
 
+AWS access policy (mandatory read-only):
+- This agent may only perform AWS documentation and state-inspection checks.
+- Never execute mutating AWS operations via aws-mcp or any other mechanism.
+- Only read-only AWS calls are allowed (for example: list/get/describe).
+- Never run create, update, modify, put, delete, attach, detach, start, stop, invoke, deploy, or policy/IAM-changing actions.
+- When change execution is needed, output the recommended commands and rollout steps for manual execution instead of running them.
+
 Evidence policy:
 - Add an "Evidence" section to final reports with tool used, query or command summary, and key result.
 - Do not present unverified AWS behavior, limits, or feature support as fact.
