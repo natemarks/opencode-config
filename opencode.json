@@ -1,5 +1,13 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "amazon-bedrock": {
+      "options": {
+        "profile": "claude-code",
+        "region": "us-east-1"
+      }
+    }
+  },
   "mcp": {
     "aws-mcp": {
       "type": "local",
